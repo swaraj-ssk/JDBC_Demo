@@ -2,27 +2,25 @@ package demoJDBC;
 
 import java.sql.*;
 
-
-public class demo {
+public class Demo3 {
 	public static void main(String srgs[]) throws Exception {
 		
 		String url = "jdbc:mysql://localhost:3306/abc";
 		String uname = "root";
 		String pass = "Swaraj@2001";
 		
-		String query = "Select name from student where rollno=2";
+		String query = "insert into student values (7, 'Mayur', 10, 24)";
+		//delete from student where marks=100
 		
-//		Class.forName("com.mysql.cj.jdbc.Driver");
-		
+		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, uname, pass);
 		Statement st = con.createStatement();
-		ResultSet rs = st.executeQuery(query); // this will give whole table
-		rs.next();
-		String name = rs.getString("name");
+		int count = st.executeUpdate(query);
 		
-		System.out.println(name);
+		System.out.println(count + " updated.");
 		
 		st.close();
 		con.close();
-	};
+	}
+
 }
